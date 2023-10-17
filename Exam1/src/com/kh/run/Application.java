@@ -23,7 +23,7 @@ public class Application {
 		String url ="https://apis.data.go.kr/1543061/animalShelterSrvc/shelterInfo";
 		
 		url += "?serviceKey="+ serviceKey;
-		url += "&numOfRows=215"; // 한 페이지 결과 수 
+		url += "&numOfRows=2"; // 한 페이지 결과 수 
 		url += "&_type=json"; // 기본값 : xml 이렇게 지정 시 json 방식으로
 		
 		URL requestUrl = new URL(url);
@@ -36,8 +36,9 @@ public class Application {
 		StringBuffer responseBuffer = new StringBuffer();
 		
 		while((line = br.readLine())!=null) {
-//			System.out.println(line);아래는 JSON 파싱
-			responseBuffer.append(line);
+			System.out.println(line);
+//			아래는 JSON 파싱
+//			responseBuffer.append(line);
 		}
 		br.close();
 		urlConnection.disconnect();
