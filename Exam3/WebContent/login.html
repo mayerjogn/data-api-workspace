@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script src="https://code.jquery.com/jquery-3.4.0.js"></script>
+</head>
+<body>
+	<h1>로그인</h1>
+	<p>아이디 : <input type="text" id="id"></p>
+	<p>비밀번호 : <input type="password" id="pwd"></p>
+	<input type="text" id="email"><span id="result">
+	
+	</span>
+	<button>로그인</button>
+	
+	<script>
+	
+	// 이벤트 : 버튼 클릭시 -> click, 입력을 작성하는 순간 -> input, input해당하는 값이 변경했을 시 ->change
+	
+	$("button").on("click", function(){
+		const id = $("#id").val();
+		const pwd = $("#pwd").val();
+		
+		
+
+		// 정규표현식! <-- 제공될거임
+		
+		$.ajax({
+			url:"Login",
+			data: {id: id, pwd: pwd},
+			success: function(reponse){
+				alert(respones);
+				// 만약 response 값을 화면으로 받고 싶다! -> $(선택자).html(response);
+			}
+		})
+	})
+	
+	
+	$("#email").on("input",function(){
+		var email =$("#email").val();
+	
+		var regex = /^[a-zA-Z0-9+-\_.]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/;		
+		
+		if(regex.exec(email)==null){
+			$("#result").text("이메일 형식에 맞지 않습니다.")
+		return ;
+		}
+		   $.ajax({
+		        url: "CheckEmail",  // Controller의 URL을 여기에 입력하세요
+		        data: { email: $("#email").val() },
+		        success: function(response) {
+		            $("#result").text(resp);
+		        }
+		    });
+		});
+	</script>
+</body>
+</html>
